@@ -1,4 +1,4 @@
-const modals = (state) => {
+const modals = () => {
 
     let btnPressed = false;
 
@@ -11,7 +11,7 @@ const modals = (state) => {
         
               
         trigger.forEach(item => {
-            let event = item.addEventListener('click', (e) => {
+            item.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
                 }
@@ -21,49 +21,6 @@ const modals = (state) => {
                 if (destroy) {
                     item.remove();
                 }
-
-
-                let bindInput = document.createElement('div');
-                bindInput.classList.add('status');
-                bindInput.textContent = 'Заполните все поля...';
-
-                if (modal.classList.contains('popup_calc_profile')) {
-
-                    if (document.querySelector('.status')) {
-                        bindInput.remove();
-                        item.removeEventListener();
-                    } else {
-                        if(!state.width || !state.height) {
-
-                            item.after(bindInput);
-
-                            setTimeout (function () {
-                                bindInput.remove();
-                            }, 2000);
-
-                            item.removeEventListener();
-                            
-                        }
-                    }
-
-                } 
-                if (modal.classList.contains('popup_calc_end')) {
-                    if (document.querySelector('.status')) {
-                        bindInput.remove();
-                        item.removeEventListener();
-                    } else {
-                        if(!state.profile) {
-
-                            item.after(bindInput);
-                            setTimeout (function () {
-                                bindInput.remove();
-                            }, 2000);
-                            
-                            event.removeEventListener();
-                        }
-                    }
-                }
-
 
                 windows.forEach(item => {
                     item.style.display = 'none';
@@ -155,7 +112,7 @@ const modals = (state) => {
     bindModal('.fixed-gift', '.popup-gift', '.popup-gift  .popup-close', true );
     openByScroll('.fixed-gift');
 
-    showModalByTime('.popup-consultation', 5000);
+   // showModalByTime('.popup-consultation', 5000);
 };
 
 export default modals;
